@@ -12,6 +12,7 @@ namespace BlogHack
     class Program
     {
         //test of GH flow in VS.
+        //what really should happen
         static void Main(string[] args)
         {
 
