@@ -1,0 +1,35 @@
+﻿<p><a href="https://en.wikipedia.org/wiki/Multi-factor_authentication">2-step verification</a> is becoming more prevalent. This is the process where when you logon to a web site, or application, you might provide something you know (username &amp; password) and then using a special "Authenticator" application that might be on your phone, keychain, or even your computer, you enter a challenge code.</p>
+<p>This approach has been around for decades. If you recall the old RSA SecurID cards, now keyfobs, now soft-keyfobs that exist they use a similar principle.</p>
+<p>These token generators basically, using the current date + time, plus some "seed" value, they both apply the same algorithm <a href="https://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm">TOTP</a> that generates a numeric code (usually 6 digits) that when presented on the OTP device, you enter on the site.</p>
+<p>In some instances, like with Azure Authentication, you can have a notification sent to your device that the App there will just ask you to Verify. Some configurations of Azure Authentication (like with MSIT) we have to supply a PIN in addition.</p>
+<h3 id="toc_1">Links to apps</h3>
+<p>The following are links for several of the following used. They all implement the same base algorithm and for some the source code is public.</p>
+<ul>
+    <li>
+        <p>Google Authenticator - <a href="https://support.google.com/accounts/answer/1066447?hl=en">https://support.google.com/accounts/answer/1066447?hl=en</a></p>
+    </li>
+    <li>
+        <p>Google Authenticator for Win 8/10 <a href="https://www.microsoft.com/en-us/store/apps/google-authenticator/9wzdncrdnkrf">https://www.microsoft.com/en-us/store/apps/google-authenticator/9wzdncrdnkrf</a></p>
+    </li>
+    <li>
+        <p>Azure Authenticator - <a href="https://azure.microsoft.com/en-us/documentation/articles/multi-factor-authentication-azure-authenticator/">https://azure.microsoft.com/en-us/documentation/articles/multi-factor-authentication-azure-authenticator/</a></p>
+    </li>
+    <li>
+        <p>OTP Manager (Max OSX) - <a href="https://itunes.apple.com/us/app/otp-manager/id928941247?mt=12">https://itunes.apple.com/us/app/otp-manager/id928941247?mt=12</a></p>
+    </li>
+</ul>
+<h2 id="toc_2">How this applies</h2>
+<p>So, the example I'm providing here works well with Github and allows you to have several devices that will all provide the same Token at time of challenge. I've been running this for a while and so far, they are all generarting the same TOken at the same time for the same (or very close) grace period.</p>
+<p><a href="/cs1/cfs-file.ashx/__key/CommunityServer.Blogs.Components.WeblogFiles/cedarlogic/1258.2015_2D00_09_2D00_10_5F00_08_2D00_14_2D00_03.png_2D00_550x0.png">
+<img src="/cs1/cfs-file.ashx/__key/CommunityServer.Blogs.Components.WeblogFiles/cedarlogic/1258.2015_2D00_09_2D00_10_5F00_08_2D00_14_2D00_03.png_2D00_550x0.png" alt="" border="0" /></a></p>
+<h2 id="toc_3">Making life simple</h2>
+<p>Now, If i'm on my Mac, or only have either my iPhone, or Nexus, and if say Azure Authenticator app isn't working say for a recent update (this happens), you have a backup.</p>
+<p>You can see here how they are all the same code...</p>
+<h2 id="toc_4">Setup</h2>
+<p>The setup requires a little coordination. You need to have each OTP program ready. So, on my iPhone and Nexus I have Google Authenticator, Azure Authenticator, on Mac I have OTP Manager, and Windows 10 - well, nothing yet.</p>
+<ol>
+    <li>First line up all up</li>
+    <li>Get to the point in Github where it's showing you the QR code</li>
+    <li>Then, for the phone apps, you can just start the add process and just point at the QR code</li>
+    <li>For the Mac or PC base app, you need to get the long "code" that you can either cut &amp; paste into the OTP app or just type it in.</li>
+</ol>
